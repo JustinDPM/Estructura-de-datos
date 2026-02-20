@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <vector>
 #include <string>
+#include <iomanip>
 using namespace std;
 
 struct Alumno {
@@ -42,21 +43,56 @@ bool agregarAlumno(vector<Alumno>& grupo, const Alumno& alumno) {
 
 void mostrarAlumnos(vector<Alumno>& grupo) {
 
-    for(Alumno a : grupo){
+    if (grupo.empty()) {
+        cout << "Grupo vacio" << endl;
+    }
+    else {
+        cout << "=====Listado de alumnos=====" << endl;
+        cout << left << setw(12) << "Matricula"
+            << setw(20) << "Nombre"
+            << setw(12) << "Promedio" << endl;
+        for(Alumno a : grupo){
 
-        cout << "Matricula: " << a.matricula << "  Nombre: " << a.nombre << "  Promedio: " <<a.promedio<<endl;
+            cout << left << setw(12) << a.matricula
+            << setw(20) << a.nombre
+            << setw(12) << a.promedio << endl;
         
+        }
     }
 }
 
+int calcularPromedio(vector<Alumno>& grupo){
+    int promedio = 0;
+    if (grupo.empty()) {
+        return -1;
+    }
+    for(Alumno a : grupo){
+
+        promedio += a.promedio;
+            
+    }
+    return promedio / grupo.size();
+    
+}
+
+void actualizarAlumno (vector<Alumno>& grupo, int matricula, string nombre, double promedio){
+    int index = buscarAlumno(grupo, matricula);
+    if( index != -1){
+        grupo[index].nombre = nombre;
+        grupo[index].promedio = promedio;
+        
+    } 
+}
 
 int main(){
 
     vector<Alumno> grupo;
     Alumno temp_alumno;
+
     int opcion;
     int matricula;
     int index;
+    int promedio;
   
     do
     {
@@ -70,7 +106,7 @@ int main(){
         cout << "5) Eliminar alumno" <<endl; //listo
         cout << "6) Ordenar por promedio (desc)" <<endl;
         cout << "7) Ordenar por promedio (asc)" <<endl;
-        cout << "8) Calcular promedio del grupo)" <<endl;
+        cout << "8) Calcular promedio del grupo)" <<endl; //listo
         cout << "0) Salir"<<endl; //listo
         cout << "Opcion: ";
         cin>>opcion;
@@ -82,7 +118,7 @@ int main(){
             cout << "Agregar alumno" <<endl;
             cout << "Ingresa matricula: ";
             cin >> temp_alumno.matricula;
-            cin.ignore();
+            cin.ignore(); //Limpiar buffer
 
             cout << "Ingresa nombre: ";
             getline(cin, temp_alumno.nombre);
@@ -121,8 +157,22 @@ int main(){
             cout << "Ingrese matricula del alumno: " ;
             cin >> matricula;
             index = buscarAlumno(grupo, matricula);
+            cin.ignore();
 
-            if (index != -1 ){}
+            if (index != -1 ){
+                int promedio;
+                string nombre;
+                cout << "Ingrese nuevo nombre: ";
+                getline(cin, nombre);
+
+                cout << "Ingrese nuevo promedio: ";
+                cin >> promedio;
+
+                actualizarAlumno(grupo, matricula, nombre, promedio);
+            } else {
+                cout << "Error: Matricula no encontrada";
+            }
+
             break;
         case 5:
             cout << "Eliminar alumno" <<endl;
@@ -145,6 +195,12 @@ int main(){
             break; 
         case 8:
             cout << "Calcular promedio del grupo" <<endl;
+            promedio = calcularPromedio(grupo);
+            if (promedio != -1) {
+                cout << "El promedio grupal es: " << promedio;
+            } else {
+                cout << "ERROR: Grupo vacio";
+            }
             break;
         case 0:
             cout << "Saliendo..." <<endl;
