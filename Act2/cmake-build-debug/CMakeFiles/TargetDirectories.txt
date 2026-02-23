@@ -1,0 +1,3 @@
+C:/Users/bolaj/OneDrive/Escritorio/Estructura de datos/Act2/cmake-build-debug/CMakeFiles/Act2.dir
+C:/Users/bolaj/OneDrive/Escritorio/Estructura de datos/Act2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/bolaj/OneDrive/Escritorio/Estructura de datos/Act2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

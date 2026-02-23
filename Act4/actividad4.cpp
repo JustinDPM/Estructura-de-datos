@@ -62,11 +62,11 @@ void mostrarAlumnos(vector<Alumno>& grupo) {
 }
 
 int calcularPromedio(vector<Alumno>& grupo){
-    int promedio = 0;
+    double promedio = 0;
     if (grupo.empty()) {
         return -1;
     }
-    for(Alumno a : grupo){
+    for(const Alumno& a : grupo){
 
         promedio += a.promedio;
             

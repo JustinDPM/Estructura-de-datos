@@ -1,0 +1,3 @@
+C:/Users/bolaj/OneDrive/Escritorio/Estructura de datos/Act4/cmake-build-debug/CMakeFiles/Act4.dir
+C:/Users/bolaj/OneDrive/Escritorio/Estructura de datos/Act4/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/bolaj/OneDrive/Escritorio/Estructura de datos/Act4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
